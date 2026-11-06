@@ -1,0 +1,19 @@
+{
+	"name": "DS_Source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "industry_sic (1).csv",
+				"fileSystem": "testdelete"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
