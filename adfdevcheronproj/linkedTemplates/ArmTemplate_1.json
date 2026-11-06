@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adfdevcheronproj"
 		},
+		"DS_SQLSERVER_Customers_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'DS_SQLSERVER_Customers'"
+		},
 		"LS_ADLS_HR_EMPLOYEE_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_ADLS_HR_EMPLOYEE'"
@@ -18,6 +22,18 @@
 		"LS_SQLSERVERADVENTURE_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_SQLSERVERADVENTURE'"
+		},
+		"DS_SQLSERVER_Customers_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"DS_SQLSERVER_Customers_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "master"
+		},
+		"DS_SQLSERVER_Customers_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "karthika"
 		},
 		"LS_ADLS_HR_EMPLOYEE_properties_typeProperties_url": {
 			"type": "string",
@@ -46,12 +62,46 @@
 		"LS_SQLSERVERADVENTURE_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "karthika"
+		},
+		"LS_Test_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlssrccsv.dfs.core.windows.net"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/13f5ff7e-246c-42a1-840c-f03fa60f8920/resourceGroups/rg_dev_cheronproject/providers/Microsoft.Storage/storageAccounts/adlssrccsv"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SQLSERVER_Customers')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('DS_SQLSERVER_Customers_properties_typeProperties_server')]",
+					"database": "[parameters('DS_SQLSERVER_Customers_properties_typeProperties_database')]",
+					"encrypt": "optional",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('DS_SQLSERVER_Customers_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('DS_SQLSERVER_Customers_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "integrationRuntime1",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/LS_ADLS_HR_EMPLOYEE')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -121,6 +171,27 @@
 				"connectVia": {
 					"referenceName": "integrationRuntime1",
 					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_Test')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_Test_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "testkey"
+					}
 				}
 			},
 			"dependsOn": []
@@ -260,7 +331,9 @@
 				"annotations": [],
 				"lastPublishTime": "2026-11-03T03:15:43Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DS_SQLSERVER_Customers')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DS_Lkp_SQL')]",
@@ -685,6 +758,36 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DS_SQLSERVER_ADVENTURE')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger1')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "PL_Lkp_SQL",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/testdelete/blobs/",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PL_Lkp_SQL')]"
 			]
 		}
 	]

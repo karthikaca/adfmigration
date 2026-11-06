@@ -79,6 +79,10 @@
 			"type": "string",
 			"defaultValue": "https://adlssrccsv.dfs.core.windows.net/"
 		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://keyvalutdevtest.vault.azure.net/"
+		},
 		"DS_SQLSERVER_Customers_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "localhost\\SQLEXPRESS"
@@ -167,6 +171,14 @@
 			"type": "string",
 			"defaultValue": "https://adlssrccsv.dfs.core.windows.net/"
 		},
+		"LS_Test_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlssrccsv.dfs.core.windows.net"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/13f5ff7e-246c-42a1-840c-f03fa60f8920/resourceGroups/rg_dev_cheronproject/providers/Microsoft.Storage/storageAccounts/adlssrccsv"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -233,11 +245,11 @@
 					"LS_Source_ADLS_CSV_accountKey": {
 						"value": "[parameters('LS_Source_ADLS_CSV_accountKey')]"
 					},
-					"DS_SQLSERVER_Customers_password": {
-						"value": "[parameters('DS_SQLSERVER_Customers_password')]"
-					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
 					},
 					"LS_ADLS_Employee_properties_typeProperties_url": {
 						"value": "[parameters('LS_ADLS_Employee_properties_typeProperties_url')]"
@@ -274,15 +286,6 @@
 					},
 					"LS_Source_ADLS_CSV_properties_typeProperties_url": {
 						"value": "[parameters('LS_Source_ADLS_CSV_properties_typeProperties_url')]"
-					},
-					"DS_SQLSERVER_Customers_properties_typeProperties_server": {
-						"value": "[parameters('DS_SQLSERVER_Customers_properties_typeProperties_server')]"
-					},
-					"DS_SQLSERVER_Customers_properties_typeProperties_database": {
-						"value": "[parameters('DS_SQLSERVER_Customers_properties_typeProperties_database')]"
-					},
-					"DS_SQLSERVER_Customers_properties_typeProperties_userName": {
-						"value": "[parameters('DS_SQLSERVER_Customers_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -302,6 +305,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"DS_SQLSERVER_Customers_password": {
+						"value": "[parameters('DS_SQLSERVER_Customers_password')]"
+					},
 					"LS_ADLS_HR_EMPLOYEE_accountKey": {
 						"value": "[parameters('LS_ADLS_HR_EMPLOYEE_accountKey')]"
 					},
@@ -310,6 +316,15 @@
 					},
 					"LS_SQLSERVERADVENTURE_password": {
 						"value": "[parameters('LS_SQLSERVERADVENTURE_password')]"
+					},
+					"DS_SQLSERVER_Customers_properties_typeProperties_server": {
+						"value": "[parameters('DS_SQLSERVER_Customers_properties_typeProperties_server')]"
+					},
+					"DS_SQLSERVER_Customers_properties_typeProperties_database": {
+						"value": "[parameters('DS_SQLSERVER_Customers_properties_typeProperties_database')]"
+					},
+					"DS_SQLSERVER_Customers_properties_typeProperties_userName": {
+						"value": "[parameters('DS_SQLSERVER_Customers_properties_typeProperties_userName')]"
 					},
 					"LS_ADLS_HR_EMPLOYEE_properties_typeProperties_url": {
 						"value": "[parameters('LS_ADLS_HR_EMPLOYEE_properties_typeProperties_url')]"
@@ -331,6 +346,12 @@
 					},
 					"LS_SQLSERVERADVENTURE_properties_typeProperties_userName": {
 						"value": "[parameters('LS_SQLSERVERADVENTURE_properties_typeProperties_userName')]"
+					},
+					"LS_Test_properties_typeProperties_url": {
+						"value": "[parameters('LS_Test_properties_typeProperties_url')]"
+					},
+					"trigger1_properties_typeProperties_scope": {
+						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
 					}
 				}
 			},
