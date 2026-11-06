@@ -71,6 +71,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SRC_MultipleParquet'"
 		},
+		"LS_Sink_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_Sink'"
+		},
 		"LS_Source_ADLS_CSV_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_Source_ADLS_CSV'"
@@ -167,6 +171,10 @@
 			"type": "string",
 			"defaultValue": "https://adlssinkstorage1.dfs.core.windows.net/"
 		},
+		"LS_Sink_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlssinkstorage1.dfs.core.windows.net/"
+		},
 		"LS_Source_ADLS_CSV_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlssrccsv.dfs.core.windows.net/"
@@ -242,6 +250,9 @@
 					"LS_SRC_MultipleParquet_accountKey": {
 						"value": "[parameters('LS_SRC_MultipleParquet_accountKey')]"
 					},
+					"LS_Sink_accountKey": {
+						"value": "[parameters('LS_Sink_accountKey')]"
+					},
 					"LS_Source_ADLS_CSV_accountKey": {
 						"value": "[parameters('LS_Source_ADLS_CSV_accountKey')]"
 					},
@@ -283,6 +294,9 @@
 					},
 					"LS_SRC_MultipleParquet_properties_typeProperties_url": {
 						"value": "[parameters('LS_SRC_MultipleParquet_properties_typeProperties_url')]"
+					},
+					"LS_Sink_properties_typeProperties_url": {
+						"value": "[parameters('LS_Sink_properties_typeProperties_url')]"
 					},
 					"LS_Source_ADLS_CSV_properties_typeProperties_url": {
 						"value": "[parameters('LS_Source_ADLS_CSV_properties_typeProperties_url')]"

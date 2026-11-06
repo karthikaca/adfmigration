@@ -53,6 +53,9 @@
 		"LS_SRC_MultipleParquet_accountKey": {
 			"value": ""
 		},
+		"LS_Sink_accountKey": {
+			"value": ""
+		},
 		"LS_Source_ADLS_CSV_accountKey": {
 			"value": ""
 		},
@@ -123,6 +126,9 @@
 			"value": "https://adlssrccsv.dfs.core.windows.net/"
 		},
 		"LS_SRC_MultipleParquet_properties_typeProperties_url": {
+			"value": "https://adlssinkstorage1.dfs.core.windows.net/"
+		},
+		"LS_Sink_properties_typeProperties_url": {
 			"value": "https://adlssinkstorage1.dfs.core.windows.net/"
 		},
 		"LS_Source_ADLS_CSV_properties_typeProperties_url": {
