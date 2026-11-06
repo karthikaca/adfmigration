@@ -61,11 +61,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"pr_FileName": {
-				"type": "string"
-			}
-		},
 		"variables": {
 			"In_date": {
 				"type": "String"
