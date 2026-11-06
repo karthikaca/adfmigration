@@ -1,0 +1,24 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PL_Lkp_SQL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/testdelete/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/13f5ff7e-246c-42a1-840c-f03fa60f8920/resourceGroups/rg_dev_cheronproject/providers/Microsoft.Storage/storageAccounts/adlssrccsv",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
