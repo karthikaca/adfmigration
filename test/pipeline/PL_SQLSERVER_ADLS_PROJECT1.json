@@ -28,6 +28,26 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "ForEachSqlTable",
+				"description": "Iterate through each sql activity",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "LKP_SQLTABLE_WATERMARKDW",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('LKP_SQLTABLE_WATERMARKDW').output.value",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
