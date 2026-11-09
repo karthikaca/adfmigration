@@ -1,0 +1,12 @@
+{
+	"name": "DS_SQLSERVER_WATERMARK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQLSERVER_WATERMARK",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
