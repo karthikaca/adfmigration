@@ -1,0 +1,12 @@
+{
+	"name": "DS_sqlmigration_MaxValue",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_sqlmigration_MaxValue",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
