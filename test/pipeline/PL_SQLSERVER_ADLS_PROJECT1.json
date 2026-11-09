@@ -25,7 +25,8 @@
 					"dataset": {
 						"referenceName": "DS_SQLSERVER_WATERMARK",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			}
 		],
