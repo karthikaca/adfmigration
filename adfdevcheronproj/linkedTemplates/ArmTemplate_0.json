@@ -39,6 +39,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_ALDS_PARQUET'"
 		},
+		"LS_SQLTable_Parquet_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SQLTable_Parquet'"
+		},
 		"LS_SRC_ADLS_INPUT_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SRC_ADLS_INPUT'"
@@ -62,10 +66,6 @@
 		"LS_Source_ADLS_CSV_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_Source_ADLS_CSV'"
-		},
-		"LS_SQLTable_Parquet_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SQLTable_Parquet'"
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -103,6 +103,10 @@
 			"type": "string",
 			"defaultValue": "https://adlssinkstorage1.dfs.core.windows.net/"
 		},
+		"LS_SQLTable_Parquet_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sinksales.dfs.core.windows.net/"
+		},
 		"LS_SRC_ADLS_INPUT_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlssrccsv.dfs.core.windows.net/"
@@ -126,10 +130,6 @@
 		"LS_Source_ADLS_CSV_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlssrccsv.dfs.core.windows.net/"
-		},
-		"LS_SQLTable_Parquet_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://sinksales.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
@@ -286,6 +286,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_SQLTable_Parquet')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SQLTable_Parquet_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SQLTable_Parquet_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_SRC_ADLS_INPUT')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -394,23 +411,6 @@
 			"properties": {
 				"type": "SelfHosted",
 				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_SQLTable_Parquet')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_SQLTable_Parquet_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_SQLTable_Parquet_accountKey')]"
-					}
-				}
 			},
 			"dependsOn": []
 		},

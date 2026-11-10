@@ -59,6 +59,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_SQLSERVER_WATERMARK'"
 		},
+		"LS_SQLTable_Parquet_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SQLTable_Parquet'"
+		},
 		"LS_SRC_ADLS_INPUT_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SRC_ADLS_INPUT'"
@@ -86,10 +90,6 @@
 		"LS_sqlmigration_MaxValue_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_sqlmigration_MaxValue'"
-		},
-		"LS_SQLTable_Parquet_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SQLTable_Parquet'"
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -179,6 +179,10 @@
 			"type": "string",
 			"defaultValue": "karthika"
 		},
+		"LS_SQLTable_Parquet_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sinksales.dfs.core.windows.net/"
+		},
 		"LS_SRC_ADLS_INPUT_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlssrccsv.dfs.core.windows.net/"
@@ -222,10 +226,6 @@
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/13f5ff7e-246c-42a1-840c-f03fa60f8920/resourceGroups/rg_dev_cheronproject/providers/Microsoft.Storage/storageAccounts/adlssrccsv"
-		},
-		"LS_SQLTable_Parquet_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://sinksales.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -278,6 +278,9 @@
 					"LS_ALDS_PARQUET_accountKey": {
 						"value": "[parameters('LS_ALDS_PARQUET_accountKey')]"
 					},
+					"LS_SQLTable_Parquet_accountKey": {
+						"value": "[parameters('LS_SQLTable_Parquet_accountKey')]"
+					},
 					"LS_SRC_ADLS_INPUT_accountKey": {
 						"value": "[parameters('LS_SRC_ADLS_INPUT_accountKey')]"
 					},
@@ -295,9 +298,6 @@
 					},
 					"LS_Source_ADLS_CSV_accountKey": {
 						"value": "[parameters('LS_Source_ADLS_CSV_accountKey')]"
-					},
-					"LS_SQLTable_Parquet_accountKey": {
-						"value": "[parameters('LS_SQLTable_Parquet_accountKey')]"
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
@@ -326,6 +326,9 @@
 					"LS_ALDS_PARQUET_properties_typeProperties_url": {
 						"value": "[parameters('LS_ALDS_PARQUET_properties_typeProperties_url')]"
 					},
+					"LS_SQLTable_Parquet_properties_typeProperties_url": {
+						"value": "[parameters('LS_SQLTable_Parquet_properties_typeProperties_url')]"
+					},
 					"LS_SRC_ADLS_INPUT_properties_typeProperties_url": {
 						"value": "[parameters('LS_SRC_ADLS_INPUT_properties_typeProperties_url')]"
 					},
@@ -343,9 +346,6 @@
 					},
 					"LS_Source_ADLS_CSV_properties_typeProperties_url": {
 						"value": "[parameters('LS_Source_ADLS_CSV_properties_typeProperties_url')]"
-					},
-					"LS_SQLTable_Parquet_properties_typeProperties_url": {
-						"value": "[parameters('LS_SQLTable_Parquet_properties_typeProperties_url')]"
 					}
 				}
 			},

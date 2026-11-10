@@ -554,7 +554,6 @@
 								"value": "@activity('LKP_SQLTABLE_WATERMARKDW').output.value",
 								"type": "Expression"
 							},
-							"isSequential": false,
 							"activities": [
 								{
 									"name": "Child_Incremental_Pipeline",
