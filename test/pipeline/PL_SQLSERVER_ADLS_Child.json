@@ -106,7 +106,17 @@
 							"inputs": [
 								{
 									"referenceName": "DS_sqlmigration_MaxValue",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": {
+											"value": "@pipeline().parameters.TableName",
+											"type": "Expression"
+										},
+										"SchemaName": {
+											"value": "@pipeline().parameters.TableSchema",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
