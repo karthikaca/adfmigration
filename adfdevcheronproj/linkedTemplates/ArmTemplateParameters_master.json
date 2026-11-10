@@ -41,6 +41,9 @@
 		"LS_SQLSERVERADVENTURE_password": {
 			"value": ""
 		},
+		"LS_SQLSERVER_WATERMARK_password": {
+			"value": ""
+		},
 		"LS_SRC_ADLS_INPUT_accountKey": {
 			"value": ""
 		},
@@ -57,6 +60,12 @@
 			"value": ""
 		},
 		"LS_Source_ADLS_CSV_accountKey": {
+			"value": ""
+		},
+		"LS_sqlmigration_MaxValue_password": {
+			"value": ""
+		},
+		"LS_SQLTable_Parquet_accountKey": {
 			"value": ""
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
@@ -116,6 +125,15 @@
 		"LS_SQLSERVERADVENTURE_properties_typeProperties_userName": {
 			"value": "karthika"
 		},
+		"LS_SQLSERVER_WATERMARK_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"LS_SQLSERVER_WATERMARK_properties_typeProperties_database": {
+			"value": "sqlmigration"
+		},
+		"LS_SQLSERVER_WATERMARK_properties_typeProperties_userName": {
+			"value": "karthika"
+		},
 		"LS_SRC_ADLS_INPUT_properties_typeProperties_url": {
 			"value": "https://adlssrccsv.dfs.core.windows.net/"
 		},
@@ -137,8 +155,20 @@
 		"LS_Test_properties_typeProperties_url": {
 			"value": "https://adlssrccsv.dfs.core.windows.net"
 		},
+		"LS_sqlmigration_MaxValue_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"LS_sqlmigration_MaxValue_properties_typeProperties_database": {
+			"value": "sqlmigration"
+		},
+		"LS_sqlmigration_MaxValue_properties_typeProperties_userName": {
+			"value": "karthika"
+		},
 		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/13f5ff7e-246c-42a1-840c-f03fa60f8920/resourceGroups/rg_dev_cheronproject/providers/Microsoft.Storage/storageAccounts/adlssrccsv"
+		},
+		"LS_SQLTable_Parquet_properties_typeProperties_url": {
+			"value": "https://sinksales.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"value": ""

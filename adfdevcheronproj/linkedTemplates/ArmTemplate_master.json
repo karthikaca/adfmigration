@@ -55,6 +55,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_SQLSERVERADVENTURE'"
 		},
+		"LS_SQLSERVER_WATERMARK_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQLSERVER_WATERMARK'"
+		},
 		"LS_SRC_ADLS_INPUT_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SRC_ADLS_INPUT'"
@@ -78,6 +82,14 @@
 		"LS_Source_ADLS_CSV_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_Source_ADLS_CSV'"
+		},
+		"LS_sqlmigration_MaxValue_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_sqlmigration_MaxValue'"
+		},
+		"LS_SQLTable_Parquet_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SQLTable_Parquet'"
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -155,6 +167,18 @@
 			"type": "string",
 			"defaultValue": "karthika"
 		},
+		"LS_SQLSERVER_WATERMARK_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"LS_SQLSERVER_WATERMARK_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sqlmigration"
+		},
+		"LS_SQLSERVER_WATERMARK_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "karthika"
+		},
 		"LS_SRC_ADLS_INPUT_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlssrccsv.dfs.core.windows.net/"
@@ -183,9 +207,25 @@
 			"type": "string",
 			"defaultValue": "https://adlssrccsv.dfs.core.windows.net"
 		},
+		"LS_sqlmigration_MaxValue_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost\\SQLEXPRESS"
+		},
+		"LS_sqlmigration_MaxValue_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sqlmigration"
+		},
+		"LS_sqlmigration_MaxValue_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "karthika"
+		},
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/13f5ff7e-246c-42a1-840c-f03fa60f8920/resourceGroups/rg_dev_cheronproject/providers/Microsoft.Storage/storageAccounts/adlssrccsv"
+		},
+		"LS_SQLTable_Parquet_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sinksales.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -256,6 +296,9 @@
 					"LS_Source_ADLS_CSV_accountKey": {
 						"value": "[parameters('LS_Source_ADLS_CSV_accountKey')]"
 					},
+					"LS_SQLTable_Parquet_accountKey": {
+						"value": "[parameters('LS_SQLTable_Parquet_accountKey')]"
+					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -300,6 +343,9 @@
 					},
 					"LS_Source_ADLS_CSV_properties_typeProperties_url": {
 						"value": "[parameters('LS_Source_ADLS_CSV_properties_typeProperties_url')]"
+					},
+					"LS_SQLTable_Parquet_properties_typeProperties_url": {
+						"value": "[parameters('LS_SQLTable_Parquet_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -331,6 +377,12 @@
 					"LS_SQLSERVERADVENTURE_password": {
 						"value": "[parameters('LS_SQLSERVERADVENTURE_password')]"
 					},
+					"LS_SQLSERVER_WATERMARK_password": {
+						"value": "[parameters('LS_SQLSERVER_WATERMARK_password')]"
+					},
+					"LS_sqlmigration_MaxValue_password": {
+						"value": "[parameters('LS_sqlmigration_MaxValue_password')]"
+					},
 					"DS_SQLSERVER_Customers_properties_typeProperties_server": {
 						"value": "[parameters('DS_SQLSERVER_Customers_properties_typeProperties_server')]"
 					},
@@ -361,8 +413,46 @@
 					"LS_SQLSERVERADVENTURE_properties_typeProperties_userName": {
 						"value": "[parameters('LS_SQLSERVERADVENTURE_properties_typeProperties_userName')]"
 					},
+					"LS_SQLSERVER_WATERMARK_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQLSERVER_WATERMARK_properties_typeProperties_server')]"
+					},
+					"LS_SQLSERVER_WATERMARK_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQLSERVER_WATERMARK_properties_typeProperties_database')]"
+					},
+					"LS_SQLSERVER_WATERMARK_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQLSERVER_WATERMARK_properties_typeProperties_userName')]"
+					},
 					"LS_Test_properties_typeProperties_url": {
 						"value": "[parameters('LS_Test_properties_typeProperties_url')]"
+					},
+					"LS_sqlmigration_MaxValue_properties_typeProperties_server": {
+						"value": "[parameters('LS_sqlmigration_MaxValue_properties_typeProperties_server')]"
+					},
+					"LS_sqlmigration_MaxValue_properties_typeProperties_database": {
+						"value": "[parameters('LS_sqlmigration_MaxValue_properties_typeProperties_database')]"
+					},
+					"LS_sqlmigration_MaxValue_properties_typeProperties_userName": {
+						"value": "[parameters('LS_sqlmigration_MaxValue_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfdevcheronproj_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adfdevcheronproj_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"trigger1_properties_typeProperties_scope": {
 						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
@@ -370,7 +460,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'adfdevcheronproj_ArmTemplate_0')]"
+				"[resourceId('Microsoft.Resources/deployments', 'adfdevcheronproj_ArmTemplate_1')]"
 			]
 		}
 	]
