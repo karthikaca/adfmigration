@@ -347,7 +347,7 @@
 									}
 								}
 							},
-							"firstRowOnly": false
+							"firstRowOnly": true
 						}
 					},
 					{
@@ -365,7 +365,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"expression": {
-								"value": "@or(equals(pipeline().parameters.LastLoadValue, null), greater(int(activity('LKP_MaxValue').output.firstRow.MaxValue), int(pipeline().parameters.LastLoadValue)))\r\n",
+								"value": "@or(equals(pipeline().parameters.LastLoadValue, null), greater(int(activity('LKP_MaxValue').output.firstRow.MaxValue), int(pipeline().parameters.LastLoadValue)))",
 								"type": "Expression"
 							},
 							"ifTrueActivities": [
